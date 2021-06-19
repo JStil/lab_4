@@ -21,18 +21,19 @@
 })
 #endif
 
-// Var = 1 + (6 * 4 * 13) % (7,8,6,7) = 1 + 312 % (7,8,6,7)
+// Var = 1 + (8 * 6 * 10) % (7,8,6,7) = 1 + 480 % (7,8,6,7)
 // Map M1 - 5 - (M1[i] / PI) ^ 3
 // Map M2 - 1 - abs(sin(M2[i] + M2[i-1]))
 // Merge -  1 - M1[i] ^ M2[i]
 // Sort  -  5 - Gnome Sort
 
+
 #ifndef EXPERIMENTS
 #define EXPERIMENTS 50
 #endif
 
-#define A 312
-#define A10 3120
+#define A 480
+#define A10 4800
 
 #define SWAP(x, y, tt) do { \
     tt buff = x;            \
@@ -148,12 +149,7 @@ int main(int argc, const char *argv[]) {
     double full_result = 0;
     unsigned si = 0;
 
-    /**
-     * Спасибо Клименкову за отличные курсы!
-     * Интересная херня: я попытался сунуть всё под omp sections, но вместо этого время исполнения увеличилась с
-     * 550 мс до 2х секунд! Возможно там надо было таймеры по-хитрому вставлять (тем более что ровно 2 секунды было),
-     * но я уже потоки вставил, пусть так будет, тем более что теперь оно работает без опенмп (зато без птредов не работает больше)
-     * */
+   
 #ifndef NOSTATUS
     pthread_t second_thread;
     pthread_create(&second_thread, NULL, state_notifyer, &si);
